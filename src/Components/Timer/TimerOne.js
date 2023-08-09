@@ -4,7 +4,7 @@ export default class Timer extends React.Component {
     constructor() {
         super();
         this.state= {
-            counter:0
+            count:0
         }
         console.log("Timer Constructor");
     }
@@ -18,13 +18,32 @@ export default class Timer extends React.Component {
         return true;
     }
 
+
+    handleIncrease=()=>{
+        this.setState((prevState)=>{
+            return {count: prevState.count+1}
+        })
+        
+    }
+
     render() {
         console.log("Timer render");
-        return (<h1>Timer</h1>);
+       
+        const {count} = this.state;
+        
+        return (
+        <>
+        <h1>Timer</h1>
+        
+        <h2>{count}</h2>
+        <button onClick={this.handleIncrease}>Increase</button>
+        </>
+        );
     }
 
     componentDidMount() {
         console.log("Timer componentDidMount");
+        console.log("_____________________________________");
     }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
@@ -34,5 +53,6 @@ export default class Timer extends React.Component {
 
     componentDidUpdate() {
         console.log("Timer componentDidUpdate");
+        console.log("_____________________________________");
     }
 }
