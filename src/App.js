@@ -1,10 +1,10 @@
 import { Component } from "react";
-import ComponentA from "./ComponentA";
+import TimerOne from './Components/Timer/TimerOne'
 class App extends Component  {
   render(){
     return (
     <>
-      <ComponentA/>
+      <TimerOne/>
     </>
       );
   }
