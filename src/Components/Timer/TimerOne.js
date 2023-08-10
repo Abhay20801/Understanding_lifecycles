@@ -39,9 +39,7 @@ export default class Timer extends React.Component {
         console.log("Timer componentDidMount");
         console.log("_____________________________________");
 
-        this.timer = setInterval(()=>{
-            this.setState((prevState)=>({time:prevState.time+1}))
-        },1000)
+      
     }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
@@ -49,12 +47,20 @@ export default class Timer extends React.Component {
         return null;
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState,snapShot) {
         console.log("Timer componentDidUpdate");
         console.log("_____________________________________");
-        if(this.state.time === 10){
-            clearInterval(this.timer);
+       
+        if(prevProps.timerOn !== this.props.timerOn){
+            if(this.props.timerOn){
+                this.timer = setInterval(()=>{
+                    this.setState((prevState)=>({time:prevState.time+1}))
+                },1000)
+            }else{
+                clearInterval(this.timer);
+            }
         }
+       
     }
 
     componentWillUnmount(){
